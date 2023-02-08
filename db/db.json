@@ -1,0 +1,18 @@
+{
+  "personList": [
+    {
+      "id": 1,
+      "name": "Dynatrace",
+      "address": "ewqewq",
+      "city": "wewqewq",
+      "role": ""
+    },
+    {
+      "id": 2,
+      "name": "fdsfds",
+      "address": "fds",
+      "city": "fds",
+      "role": "fds"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+<h1>List person:</h1>
+<div class="list">
+  <div class="item" *ngFor="let item of signService.personList">
+    <p><strong>{{item.name}}</strong></p>
+    <p><small>Address: {{item.address}}</small></p>
+    <p><small>City: {{item.city}}</small></p>
+    <p><small>Role: {{item.role}}</small></p>
+  </div>
+  <p *ngIf="signService.personList.length === 0">Person list is empty!</p>
+</div>

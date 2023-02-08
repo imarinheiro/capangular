@@ -1,0 +1,26 @@
+<div class="info-area">
+  <h1>Add person:</h1>
+  <app-input-field type="text"
+                   label="Name"
+                   name="name"
+                   (valueEmitter)="nameReceiver($event)">
+  </app-input-field>
+  <app-input-field type="text"
+                   label="City"
+                   name="city"
+                   (valueEmitter)="cityReceiver($event)">
+  </app-input-field>
+  <app-input-field type="text"
+                   label="Address"
+                   name="address"
+                   (valueEmitter)="addressReceiver($event)">
+  </app-input-field>
+  <app-select-field type="text"
+                    label="Role"
+                    name="role">
+  </app-select-field>
+  <div class="field buttons">
+    <button class="button" (click)="clear()">Clear</button>
+    <button class="button save" (click)="save()">Save</button>
+  </div>
+</div>
