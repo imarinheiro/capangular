@@ -12,7 +12,7 @@ export class SignService {
     this.getPersonList();
   }
 
-  getPersonList() {
+  private getPersonList() {
     this.http.get('http://localhost:3000/personList')
       .subscribe(
         (res: any[]) => {
