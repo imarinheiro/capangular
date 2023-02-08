@@ -9,7 +9,7 @@ export class InputFieldComponent implements OnInit {
   @Input() type: string;
   @Input() label: string;
   @Input() name: string;
-  value: string;
+  @Input() value: string;
   @Output() valueEmitter = new EventEmitter<string>();
 
 

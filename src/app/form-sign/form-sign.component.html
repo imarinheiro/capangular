@@ -3,17 +3,20 @@
   <app-input-field type="text"
                    label="Name"
                    name="name"
+                   value="{{person.name}}"
                    (valueEmitter)="nameReceiver($event)">
-  </app-input-field>
-  <app-input-field type="text"
-                   label="City"
-                   name="city"
-                   (valueEmitter)="cityReceiver($event)">
   </app-input-field>
   <app-input-field type="text"
                    label="Address"
                    name="address"
+                   value="{{person.address}}"
                    (valueEmitter)="addressReceiver($event)">
+  </app-input-field>
+  <app-input-field type="text"
+                   label="City"
+                   name="city"
+                   value="{{person.city}}"
+                   (valueEmitter)="cityReceiver($event)">
   </app-input-field>
   <app-select-field type="text"
                     label="Role"

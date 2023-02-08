@@ -8,11 +8,11 @@ import {SignService} from '../services/sign.service';
 })
 export class FormSignComponent implements OnInit {
 
-  private person = {
+  person = {
     id: null,
     name: '',
-    address: '',
     city: '',
+    address: '',
     role: '',
   };
 
@@ -36,8 +36,8 @@ export class FormSignComponent implements OnInit {
     this.person = {
       id: null,
       name: '',
-      address: '',
       city: '',
+      address: '',
       role: '',
     };
     console.log('clear call', this.person);
