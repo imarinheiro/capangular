@@ -20,7 +20,7 @@ export class SignService {
           this.addPerson(person);
           console.log('post person list call to db.json', res, this.personList);
         },
-        (err) => console.error(err)
+        (err: any) => console.error(err)
       );
   }
 
@@ -32,7 +32,7 @@ export class SignService {
           this.getPersonList();
           console.log('remove person', id, 'from db.json', res, this.personList);
         },
-        (err) => console.error(err)
+        (err: any) => console.error(err)
       );
   }
 
@@ -43,7 +43,7 @@ export class SignService {
           this.personList = res;
           console.log('get person list call from db.json', this.personList);
         },
-        (err) => console.error(err)
+        (err: any) => console.error(err)
       );
   }
 
