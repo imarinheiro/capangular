@@ -1,6 +1,8 @@
 <div class="field">
   <label>{{label}}</label>
-  <select id="{{name}}">
-    <option *ngFor="let item of optionList" [ngValue]="item">{{item}}</option>
+  <select id="{{name}}" [(ngModel)]="value" (change)="sendValue(value)">
+    <option *ngFor="let item of optionList" [ngValue]="item">
+      {{item}}
+    </option>
   </select>
 </div>

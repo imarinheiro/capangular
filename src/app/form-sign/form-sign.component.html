@@ -20,7 +20,10 @@
   </app-input-field>
   <app-select-field type="text"
                     label="Role"
-                    name="role">
+                    name="role"
+                    value="{{person.role}}"
+                    [optionList]=roleList
+                    (valueEmitter)="roleReceiver($event)">
   </app-select-field>
   <div class="field buttons">
     <button class="button" (click)="clear()">Clear</button>

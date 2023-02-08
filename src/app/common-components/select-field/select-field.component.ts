@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-select-field',
@@ -10,8 +10,10 @@ export class SelectFieldComponent implements OnInit {
   @Input() type: string;
   @Input() label: string;
   @Input() name: string;
+  @Input() value: string;
   @Input() optionList: Array<string>;
-  value: string;
+  @Output() valueEmitter = new EventEmitter<string>();
+
 
   constructor() {
   }
@@ -19,4 +21,7 @@ export class SelectFieldComponent implements OnInit {
   ngOnInit() {
   }
 
+  sendValue(value: string) {
+    this.valueEmitter.emit(value);
+  }
 }

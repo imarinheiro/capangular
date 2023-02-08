@@ -18,7 +18,7 @@ export class FormSignComponent implements OnInit {
 
   roleList: Array<string> = [
     'Developer',
-    'Archtect',
+    'Architect',
     'QA',
     'Squad Leader',
     'Scrum Master',
@@ -54,13 +54,18 @@ export class FormSignComponent implements OnInit {
     console.log('receiving name data', value);
   }
 
+  addressReceiver(value) {
+    this.person.address = value;
+    console.log('receiving address data', value);
+  }
+
   cityReceiver(value) {
     this.person.city = value;
     console.log('receiving city data', value);
   }
 
-  addressReceiver(value) {
-    this.person.address = value;
-    console.log('receiving address data', value);
+  roleReceiver(value) {
+    this.person.role = value;
+    console.log('receiving role data', value);
   }
 }
