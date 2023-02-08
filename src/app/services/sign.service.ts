@@ -24,7 +24,7 @@ export class SignService {
       );
   }
 
-  removePerson(id: number) {
+  deletePerson(id: number) {
     const url = `http://localhost:3000/personList/${id}`;
     this.http.delete(url)
       .subscribe(

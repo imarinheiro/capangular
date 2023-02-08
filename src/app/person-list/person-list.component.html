@@ -6,7 +6,7 @@
     <p><small>Address: {{item.address}}</small></p>
     <p><small>City: {{item.city}}</small></p>
     <p><small>Role: {{item.role}}</small></p>
-    <button class="button" (click)="signService.removePerson(item.id)">Delete</button>
+    <button class="button" (click)="signService.deletePerson(item.id)">Delete</button>
   </div>
   <p *ngIf="signService.personList.length === 0">Person list is empty!</p>
 </div>
