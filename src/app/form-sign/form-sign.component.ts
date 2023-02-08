@@ -63,9 +63,4 @@ export class FormSignComponent implements OnInit {
     this.person.address = value;
     console.log('receiving address data', value);
   }
-
-  setPersonId() {
-    this.person.id = this.signService.personList.length + 1;
-  }
-
 }
