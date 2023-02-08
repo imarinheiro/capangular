@@ -37,18 +37,26 @@ nav a {
   margin-bottom: 35px;
 }
 
-.buttons button {
+.buttons button, .button {
   padding: 15px;
   background-color: rgb(177, 177, 177);
   transition: all 0.5s;
   cursor: pointer;
   border: none;
+  width: 100%;
 }
 
-.buttons button:hover {
+.buttons button:hover, .button:hover {
   padding: 15px;
   color: white;
   background-color: rgb(95, 94, 94);;
+}
+
+.info-area > .buttons {
+  font-size: 14px;
+  background-color: unset;
+  flex-direction: row;
+  padding: unset;
 }
 
 .logo {
@@ -107,26 +115,17 @@ input, select {
 }
 
 .list {
-  margin: 40px 0;
   display: flex;
-  width: 100%;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
 }
 
 .list .item {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 24%;
   border: 1px solid #555;
   border-radius: 10px;
-  padding: 15px;
-  width: 150px;
-  margin: 0 10px;
-}
-
-.info-area > .buttons  {
-  font-size: 14px;
-  background-color: unset;
-  flex-direction: row;
-  padding: unset;
-}
-
-.info-area .buttons .button {
-  width: 100%;
+  padding: 10px;
 }
