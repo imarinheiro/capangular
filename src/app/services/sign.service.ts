@@ -12,17 +12,6 @@ export class SignService {
     this.getPersonList();
   }
 
-  private getPersonList() {
-    this.http.get('http://localhost:3000/personList')
-      .subscribe(
-        (res: any[]) => {
-          this.personList = res;
-          console.log('get person list call from db.json', this.personList);
-        },
-        (err) => console.error(err)
-      );
-  }
-
   postPersonList(person: any) {
     this.setPersonId(person);
     this.http.post('http://localhost:3000/personList', person)
@@ -42,6 +31,17 @@ export class SignService {
         (res: any) => {
           this.getPersonList();
           console.log('remove person', id, 'from db.json', res, this.personList);
+        },
+        (err) => console.error(err)
+      );
+  }
+
+  private getPersonList() {
+    this.http.get('http://localhost:3000/personList')
+      .subscribe(
+        (res: any[]) => {
+          this.personList = res;
+          console.log('get person list call from db.json', this.personList);
         },
         (err) => console.error(err)
       );
