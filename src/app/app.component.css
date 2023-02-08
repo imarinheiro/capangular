@@ -3,11 +3,11 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Open Sans", sans-serif;
 }
 
 * {
   box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
 }
 
 .content {
@@ -19,7 +19,7 @@ body {
 
 nav {
   padding: 10px;
-  background-color: rgb(245, 137, 66);
+  background-color: rgb(45, 90, 45);
   width: 100%;
   margin-bottom: 40px;
 }
