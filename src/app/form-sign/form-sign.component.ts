@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {SignService} from '../services/sign.service';
+import { Component, OnInit } from '@angular/core';
+import { SignService } from '../services/sign.service';
 
 @Component({
   selector: 'app-form-sign',
