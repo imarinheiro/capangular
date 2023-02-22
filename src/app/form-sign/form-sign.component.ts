@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SignService } from '../services/sign.service';
+import { IEmployee } from '../model/iemployee';
 
 @Component({
   selector: 'app-form-sign',
@@ -8,7 +9,7 @@ import { SignService } from '../services/sign.service';
 })
 export class FormSignComponent implements OnInit {
 
-  person = {
+  employee: IEmployee = {
     id: null,
     name: '',
     city: '',
@@ -33,39 +34,30 @@ export class FormSignComponent implements OnInit {
   }
 
   clear() {
-    this.person = {
+    this.employee = {
       id: null,
       name: '',
       city: '',
       address: '',
       role: '',
     };
-    console.log('clear call', this.person);
+    console.log('clear call', this.employee);
   }
 
   save() {
-    console.log('save call', this.person);
-    this.signService.postPersonList(this.person);
+    console.log('save call', this.employee);
+    this.signService.postPersonList(this.employee)
+      .subscribe(
+        (res: any) => {
+          console.log('post person to db.json', res);
+        },
+        (err: any) => console.error(err)
+      );
     this.clear();
   }
 
-  nameReceiver(value) {
-    this.person.name = value;
-    console.log('receiving name data', value);
+  getDataReceiver(data: string, field: keyof IEmployee): void {
+    this.employee[`${field}`] = data;
   }
 
-  addressReceiver(value) {
-    this.person.address = value;
-    console.log('receiving address data', value);
-  }
-
-  cityReceiver(value) {
-    this.person.city = value;
-    console.log('receiving city data', value);
-  }
-
-  roleReceiver(value) {
-    this.person.role = value;
-    console.log('receiving role data', value);
-  }
 }

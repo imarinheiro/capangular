@@ -6,6 +6,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SignService {
 
+  private readonly HOST = 'http://localhost:3000';
+  private readonly PERSON_LIST = '/personList';
+  private readonly URL = `${this.HOST}${this.PERSON_LIST}`;
   personList: Array<any> = [];
 
   constructor(private http: HttpClient) {
@@ -14,42 +17,17 @@ export class SignService {
 
   postPersonList(person: any) {
     this.setPersonId(person);
-    this.http.post('http://localhost:3000/personList', person)
-      .subscribe(
-        (res: any) => {
-          this.addPerson(person);
-          console.log('post person list call to db.json', res, this.personList);
-        },
-        (err: any) => console.error(err)
-      );
+    return this.http.post(this.URL, person);
   }
 
   deletePerson(id: number) {
-    const url = `http://localhost:3000/personList/${id}`;
-    this.http.delete(url)
-      .subscribe(
-        (res: any) => {
-          this.getPersonList();
-          console.log('remove person', id, 'from db.json', res, this.personList);
-        },
-        (err: any) => console.error(err)
-      );
+    const url = `${this.URL}/${id}`;
+    console.log(url.toString());
+    return this.http.delete(url);
   }
 
-  private getPersonList() {
-    this.http.get('http://localhost:3000/personList')
-      .subscribe(
-        (res: any[]) => {
-          this.personList = res;
-          console.log('get person list call from db.json', this.personList);
-        },
-        (err: any) => console.error(err)
-      );
-  }
-
-  private addPerson(person: any) {
-    console.log('add person call', person, 'to', this.personList);
-    this.personList.push(person);
+  getPersonList() {
+    return this.http.get<any>(this.URL);
   }
 
   private setPersonId(person: any) {

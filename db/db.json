@@ -13,13 +13,6 @@
       "city": "754",
       "address": "432432",
       "role": "Developer"
-    },
-    {
-      "id": 3,
-      "name": "Dynatrace Test Sem Provider",
-      "city": "gfggg",
-      "address": "432432",
-      "role": "Developer"
     }
   ]
 }

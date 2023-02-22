@@ -1,12 +1,12 @@
 <h1>List person:</h1>
 <div class="list">
-  <div class="item" *ngFor="let item of signService.personList">
+  <div class="item" *ngFor="let item of this.employeeList">
     <p><strong>{{item.name}}</strong></p>
     <p><small>Id: {{item.id}}</small></p>
     <p><small>Address: {{item.address}}</small></p>
     <p><small>City: {{item.city}}</small></p>
     <p><small>Role: {{item.role}}</small></p>
-    <button class="button" (click)="signService.deletePerson(item.id)">Delete</button>
+    <button class="button" (click)="this.deleteEmployee(item.id)">Delete</button>
   </div>
-  <p *ngIf="signService.personList.length === 0">Person list is empty!</p>
+  <p *ngIf="this.employeeList.length === 0">Person list is empty!</p>
 </div>
