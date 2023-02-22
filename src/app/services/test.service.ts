@@ -10,11 +10,6 @@ export class TestService {
   }
 
   postPerson(person: any) {
-    this.http.post('http://localhost:3000/personList', person)
-      .subscribe((res: any) => {
-          console.log('POST success!');
-        },
-        (err: any) => console.error(err)
-      );
+    return this.http.post<any>('http://localhost:3000/personList', person);
   }
 }

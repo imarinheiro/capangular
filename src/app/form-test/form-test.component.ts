@@ -33,7 +33,12 @@ export class FormTestComponent implements OnInit {
   }
 
   save() {
-    this.testService.postPerson(this.person);
+    this.testService.postPerson(this.person)
+      .subscribe((res: any) => {
+        console.log('POST success!', res);
+      },
+      (err: any) => console.error(err)
+    );
   }
 
   clear() {
