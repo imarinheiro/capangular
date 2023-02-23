@@ -1,32 +1,36 @@
 <div class="info-area">
   <h1>Add person:</h1>
-  <app-input-field type="text"
-                   label="Name"
-                   name="name"
-                   value="{{employee.name}}"
-                   (valueEmitter)="getDataReceiver($event, 'name')">
-  </app-input-field>
-  <app-input-field type="text"
-                   label="Address"
-                   name="address"
-                   value="{{employee.address}}"
-                   (valueEmitter)="getDataReceiver($event, 'address')">
-  </app-input-field>
-  <app-input-field type="text"
-                   label="City"
-                   name="city"
-                   value="{{employee.city}}"
-                   (valueEmitter)="getDataReceiver($event, 'city')">
-  </app-input-field>
-  <app-select-field type="text"
-                    label="Role"
-                    name="role"
-                    value="{{employee.role}}"
-                    [optionList]=roleList
-                    (valueEmitter)="getDataReceiver($event, 'role')">
-  </app-select-field>
-  <div class="field buttons">
-    <button class="button" (click)="clear()">Clear</button>
-    <button class="button save" (click)="save()">Save</button>
-  </div>
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="info-area">
+
+    <div class="field form-group">
+      <label for="name">Name</label>
+      <input class="form-control" type="text"
+             id="name"
+             formControlName="name">
+    </div>
+    <div class="field form-group">
+      <label for="address">Address</label>
+      <input class="form-control" type="text"
+             id="address"
+             formControlName="address">
+    </div>
+    <div class="field form-group">
+      <label for="city">City</label>
+      <input class="form-control" type="text"
+             id="city"
+             formControlName="city">
+    </div>
+
+    <div class="field form-group">
+      <label for="role">Role</label>
+      <select class="form-control" name="role" id="role" formControlName="role">
+        <option *ngFor="let item of this.roleList">{{item}}</option>
+      </select>
+    </div>
+
+    <div class="field buttons">
+      <button type="button" onclick="window.location='/';" class="button">Cancelar</button>
+      <button type="submit" class="button save" [disabled]="!employeeForm.valid">Save</button>
+    </div>
+  </form>
 </div>

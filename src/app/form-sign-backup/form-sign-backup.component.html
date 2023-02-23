@@ -1,0 +1,32 @@
+<div class="info-area">
+  <h1>Add person:</h1>
+  <app-input-field type="text"
+                   label="Name"
+                   name="name"
+                   value="{{employee.name}}"
+                   (valueEmitter)="getDataReceiver($event, 'name')">
+  </app-input-field>
+  <app-input-field type="text"
+                   label="Address"
+                   name="address"
+                   value="{{employee.address}}"
+                   (valueEmitter)="getDataReceiver($event, 'address')">
+  </app-input-field>
+  <app-input-field type="text"
+                   label="City"
+                   name="city"
+                   value="{{employee.city}}"
+                   (valueEmitter)="getDataReceiver($event, 'city')">
+  </app-input-field>
+  <app-select-field type="text"
+                    label="Role"
+                    name="role"
+                    value="{{employee.role}}"
+                    [optionList]=roleList
+                    (valueEmitter)="getDataReceiver($event, 'role')">
+  </app-select-field>
+  <div class="field buttons">
+    <button class="button" (click)="clear()">Clear</button>
+    <button class="button save" (click)="save()">Save</button>
+  </div>
+</div>

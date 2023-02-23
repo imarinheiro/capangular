@@ -1,7 +1,8 @@
-<div class="field">
+<div class="field form-group">
   <label for="{{name}}">{{label}}</label>
-  <input type="{{type}}"
+  <input class="form-control" type="{{type}}"
          id="{{name}}"
+         formControlName="{{name}}"
          [(ngModel)]="value"
          (change)="sendValue(value)">
 </div>

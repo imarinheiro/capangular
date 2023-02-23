@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { SignService } from '../services/sign.service';
 import { IEmployee } from '../model/iemployee';
 import { Employee } from '../model/employee';
-import { Subscription } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-sign',
@@ -11,10 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class FormSignComponent implements OnInit, OnDestroy {
   createEmployee$: Subscription;
-
-
   employee: IEmployee = new Employee(null, '', '', '', '');
-
   roleList: Array<string> = [
     'Developer',
     'Architect',
@@ -23,12 +21,14 @@ export class FormSignComponent implements OnInit, OnDestroy {
     'Scrum Master',
     'DBA',
   ];
+  employeeForm: FormGroup;
 
-
-  constructor(private signService: SignService) {
+  constructor(private signService: SignService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
+    this.createForm(this.employee);
   }
 
   ngOnDestroy() {
@@ -37,25 +37,29 @@ export class FormSignComponent implements OnInit, OnDestroy {
     }
   }
 
-  getDataReceiver(data: string, field: keyof IEmployee): void {
-    this.employee[`${field}`] = data;
-  }
-
-  clear() {
-    this.employee = new Employee(null, '', '', '', '');
-    console.log('form sign clear call', this.employee);
-  }
-
-  save() {
-    console.log('form sign save call', this.employee);
-    this.createEmployee$ = this.signService.postPersonList(this.employee)
+  save(data: IEmployee) {
+    console.log('form sign save call', data);
+    this.createEmployee$ = this.signService.postPersonList(data)
       .subscribe(
         (res: object) => {
-          this.clear();
           this.signService.getEmployeeList();
           console.log('post person to db.json', res);
         },
         (err: any) => console.error(err)
       );
+  }
+
+  createForm(employee: IEmployee) {
+    this.employeeForm = this.formBuilder.group({
+      name: [employee.name, Validators.required],
+      address: [employee.address, Validators.required],
+      city: [employee.city, Validators.required],
+      role: [employee.role, Validators.required]
+    });
+  }
+
+  onSubmit() {
+    this.save(this.employeeForm.value as IEmployee);
+    this.employeeForm.reset(this.employee);
   }
 }

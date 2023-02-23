@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['../app.component.css', './employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit, OnDestroy {
+  employeeDelete$: Subscription[] = [];
   employeeList$: Subscription;
   employeeList: IEmployee[] = [];
 
@@ -24,6 +25,11 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.employeeList$) {
       this.employeeList$.unsubscribe();
+    }
+    if (this.employeeDelete$) {
+      this.employeeDelete$.forEach(
+        (subscription: Subscription) => subscription.unsubscribe()
+      );
     }
   }
 
@@ -52,13 +58,15 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   }
 
   deleteEmployee(id: number) {
-    this.signService.deletePerson(id)
-      .subscribe(
-        (res: object) => {
-          console.log('remove person', id, 'from db.json', res);
-          this.signService.getEmployeeList();
-        },
-        (err: any) => console.error(err)
-      );
+    this.employeeDelete$.push(
+      this.signService.deletePerson(id)
+        .subscribe(
+          (res: object) => {
+            console.log('remove person', id, 'from db.json', res);
+            this.signService.getEmployeeList();
+          },
+          (err: any) => console.error(err)
+        )
+    );
   }
 }
