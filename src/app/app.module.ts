@@ -10,7 +10,7 @@ import { InputFieldComponent } from './common-components/input-field/input-field
 import { SelectFieldComponent } from './common-components/select-field/select-field.component';
 import { SignService } from './services/sign.service';
 import { HttpClientModule } from '@angular/common/http';
-import { PersonListComponent } from './person-list/person-list.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { PersonListComponent } from './person-list/person-list.component';
     FormSignComponent,
     InputFieldComponent,
     SelectFieldComponent,
-    PersonListComponent,
+    EmployeeListComponent,
   ],
   imports: [
     BrowserModule,

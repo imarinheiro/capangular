@@ -6,11 +6,11 @@ import { IEmployee } from '../model/iemployee';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-person-list',
-  templateUrl: './person-list.component.html',
-  styleUrls: ['../app.component.css', './person-list.component.css']
+  selector: 'app-employee-list',
+  templateUrl: './employee-list.component.html',
+  styleUrls: ['../app.component.css', './employee-list.component.css']
 })
-export class PersonListComponent implements OnInit, OnDestroy {
+export class EmployeeListComponent implements OnInit, OnDestroy {
   employeeList$: Subscription;
   employeeList: IEmployee[] = [];
 
