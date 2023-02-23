@@ -8,11 +8,18 @@
       "role": "Developer"
     },
     {
-      "id": 2,
-      "name": "Chave Master",
-      "city": "754",
-      "address": "432432",
-      "role": "Developer"
+      "id": 6,
+      "name": "Hibernate",
+      "address": "fedrfw",
+      "city": "erewrew",
+      "role": "Squad Leader"
+    },
+    {
+      "id": 7,
+      "name": "microsoftonline.com",
+      "address": "dsadsa",
+      "city": "gfggg",
+      "role": "Squad Leader"
     }
   ]
 }

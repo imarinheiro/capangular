@@ -1,21 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SignService } from '../services/sign.service';
 import { IEmployee } from '../model/iemployee';
+import { Employee } from '../model/employee';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-form-sign',
   templateUrl: './form-sign.component.html',
   styleUrls: ['../app.component.css', './form-sign.component.css']
 })
-export class FormSignComponent implements OnInit {
+export class FormSignComponent implements OnInit, OnDestroy {
+  createEmployee$: Subscription;
 
-  employee: IEmployee = {
-    id: null,
-    name: '',
-    city: '',
-    address: '',
-    role: '',
-  };
+
+  employee: IEmployee = new Employee(null, '', '', '', '');
 
   roleList: Array<string> = [
     'Developer',
@@ -33,31 +31,31 @@ export class FormSignComponent implements OnInit {
   ngOnInit() {
   }
 
-  clear() {
-    this.employee = {
-      id: null,
-      name: '',
-      city: '',
-      address: '',
-      role: '',
-    };
-    console.log('clear call', this.employee);
-  }
-
-  save() {
-    console.log('save call', this.employee);
-    this.signService.postPersonList(this.employee)
-      .subscribe(
-        (res: any) => {
-          console.log('post person to db.json', res);
-        },
-        (err: any) => console.error(err)
-      );
-    this.clear();
+  ngOnDestroy() {
+    if (this.createEmployee$) {
+      this.createEmployee$.unsubscribe();
+    }
   }
 
   getDataReceiver(data: string, field: keyof IEmployee): void {
     this.employee[`${field}`] = data;
   }
 
+  clear() {
+    this.employee = new Employee(null, '', '', '', '');
+    console.log('form sign clear call', this.employee);
+  }
+
+  save() {
+    console.log('form sign save call', this.employee);
+    this.createEmployee$ = this.signService.postPersonList(this.employee)
+      .subscribe(
+        (res: object) => {
+          this.clear();
+          this.signService.getEmployeeList();
+          console.log('post person to db.json', res);
+        },
+        (err: any) => console.error(err)
+      );
+  }
 }

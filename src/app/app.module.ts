@@ -11,7 +11,6 @@ import { SelectFieldComponent } from './common-components/select-field/select-fi
 import { SignService } from './services/sign.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PersonListComponent } from './person-list/person-list.component';
-import { FormTestComponent } from './form-test/form-test.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +20,6 @@ import { FormTestComponent } from './form-test/form-test.component';
     InputFieldComponent,
     SelectFieldComponent,
     PersonListComponent,
-    FormTestComponent
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { FormSignComponent } from './form-sign/form-sign.component';
 import { PersonListComponent } from './person-list/person-list.component';
-import { FormTestComponent } from './form-test/form-test.component';
 
 
 const routes: Routes = [
@@ -14,9 +13,6 @@ const routes: Routes = [
   }, {
     path: 'sign',
     component: FormSignComponent
-  }, {
-    path: 'test',
-    component: FormTestComponent
   }, {
     path: 'list',
     component: PersonListComponent

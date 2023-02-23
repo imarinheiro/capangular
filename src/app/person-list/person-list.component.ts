@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SignService } from '../services/sign.service';
 import { map } from 'rxjs/operators';
 import { Employee } from '../model/employee';
+import { IEmployee } from '../model/iemployee';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-person-list',
   templateUrl: './person-list.component.html',
   styleUrls: ['../app.component.css', './person-list.component.css']
 })
-export class PersonListComponent implements OnInit {
-  employeeList: Employee[] = [];
+export class PersonListComponent implements OnInit, OnDestroy {
+  employeeList$: Subscription;
+  employeeList: IEmployee[] = [];
 
   constructor(private signService: SignService) {
   }
@@ -18,11 +21,18 @@ export class PersonListComponent implements OnInit {
     this.getListEmployee();
   }
 
+  ngOnDestroy() {
+    if (this.employeeList$) {
+      this.employeeList$.unsubscribe();
+    }
+  }
+
   getListEmployee() {
-    return this.signService.getPersonList()
+    this.employeeList$ = this.signService.all
       .pipe(
-        map(res => {
-          return res.map(item => {
+        map((data: IEmployee[]) => {
+          console.log(data.toString());
+          return data.map((item: IEmployee) => {
             return new Employee(
               item.id,
               item.name,
@@ -33,9 +43,9 @@ export class PersonListComponent implements OnInit {
           });
         }))
       .subscribe(
-        (res: any[]) => {
-          this.employeeList = res;
-          console.log('get person list call from db.json', this.employeeList);
+        (data: IEmployee[]) => {
+          this.employeeList = data;
+          console.log('get person list call from sign service', this.employeeList);
         },
         (err: any) => console.error(err)
       );
@@ -44,11 +54,11 @@ export class PersonListComponent implements OnInit {
   deleteEmployee(id: number) {
     this.signService.deletePerson(id)
       .subscribe(
-        (res: any) => {
+        (res: object) => {
           console.log('remove person', id, 'from db.json', res);
+          this.signService.getEmployeeList();
         },
         (err: any) => console.error(err)
       );
   }
-
 }
